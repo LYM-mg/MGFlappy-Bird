@@ -572,16 +572,19 @@ extension GameScene {
         设置前景()
         设置主角🐦()
         设置帽子🎩()
+        设置主菜单()
     }
 
     
     fileprivate func 切换到教程状态() {
         当前游戏状态 = .教程
+
+        游戏世界.enumerateChildNodes(withName: "主菜单") { (匹配单位, _) in
+            匹配单位.run(SKAction.sequence([
+                SKAction.fadeOut(withDuration: 0.05),
+                SKAction.removeFromParent() ]))
+        }
         
-        设置背景()
-        设置前景()
-        设置主角🐦()
-        设置帽子🎩()
         设置得分标签()
         设置教程()
     }
