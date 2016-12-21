@@ -60,7 +60,7 @@ class GameScene: SKScene {
         
         addChild(游戏世界)
         
-        切换到教程状态()
+        切换到主菜单()
     }
     
     // MARK: - 游戏流程
@@ -124,11 +124,10 @@ class GameScene: SKScene {
     }
     
     fileprivate func 主角飞一下() {
-        速度 = CGPoint(x: 0, y: k上冲速度)
-        
         // 播放音效
         run(拍打的音效)
-        
+        速度 = CGPoint(x: 0, y: k上冲速度)
+
         /// 帽子的动画
         let 向上移动 = SKAction.moveBy(x: 0, y: 12, duration: 0.15)
         向上移动.timingMode = .easeInEaseOut
@@ -139,12 +138,12 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         switch 当前游戏状态 {
             case .主菜单:
-////            if 点击位置.y < size.height * 0.15 {
-//                去学习()
+//            if 点击位置.y < size.height * 0.15 {
+////                去学习()
 //            } else if 点击位置.x < size.width/2 {
-//                切换到教程状态()
+                切换到教程状态()
 //            } else {
-//                去评价()
+////                去评价()
 //            }
                 break
             case .教程:
@@ -415,6 +414,59 @@ extension GameScene {
         run(声音特效)
     }
 
+    func 设置主菜单() {
+        
+        // logo
+        
+        let logo = SKSpriteNode(imageNamed: "Logo")
+        logo.position = CGPoint(x: size.width/2, y: size.height * 0.8)
+        logo.name = "主菜单"
+        logo.zPosition = 图层.UI.rawValue
+        游戏世界.addChild(logo)
+        
+        // 开始游戏按钮
+        
+        let 开始游戏按钮 = SKSpriteNode(imageNamed: "Button")
+        开始游戏按钮.position = CGPoint(x: size.width * 0.25, y: size.height * 0.25)
+        开始游戏按钮.name = "主菜单"
+        开始游戏按钮.zPosition = 图层.UI.rawValue
+        游戏世界.addChild(开始游戏按钮)
+        
+        let 游戏 = SKSpriteNode(imageNamed: "Play")
+        游戏.position = CGPoint.zero
+        开始游戏按钮.addChild(游戏)
+        
+        // 评价按钮
+        
+        let 评价按钮 = SKSpriteNode(imageNamed: "Button")
+        评价按钮.position = CGPoint(x: size.width * 0.75, y: size.height * 0.25)
+        评价按钮.zPosition = 图层.UI.rawValue
+        评价按钮.name = "主菜单"
+        游戏世界.addChild(评价按钮)
+        
+        let 评价 = SKSpriteNode(imageNamed: "Rate")
+        评价.position = CGPoint.zero
+        评价按钮.addChild(评价)
+        
+        // 学习按钮
+        
+        let 学习 = SKSpriteNode(imageNamed: "button_learn")
+        学习.position = CGPoint(x: size.width * 0.5, y: 学习.size.height/2 + k留白)
+        学习.name = "主菜单"
+        学习.zPosition = 图层.UI.rawValue
+        游戏世界.addChild(学习)
+        
+        // 学习按钮的动画
+        let 放大动画 = SKAction.scale(to: 1.02, duration: 0.75)
+        放大动画.timingMode = .easeInEaseOut
+        
+        let 缩小动画 = SKAction.scale(to: 0.98, duration: 0.75)
+        缩小动画.timingMode = .easeInEaseOut
+        
+        学习.run(SKAction.repeatForever(SKAction.sequence([
+            放大动画,缩小动画
+            ])), withKey: "主菜单")
+    }
 }
 
 extension GameScene: SKPhysicsContactDelegate {
@@ -491,6 +543,7 @@ extension GameScene {
         }
     }
 
+    // MARK: - 切换状态
     /// 切换到跌落状态
     fileprivate func 切换到跌落状态() {
         当前游戏状态 = .跌落
@@ -511,6 +564,16 @@ extension GameScene {
         停止重生障碍物()
         设置记分板()
     }
+    
+    fileprivate func 切换到主菜单() {
+        当前游戏状态 = .主菜单
+        
+        设置背景()
+        设置前景()
+        设置主角🐦()
+        设置帽子🎩()
+    }
+
     
     fileprivate func 切换到教程状态() {
         当前游戏状态 = .教程
