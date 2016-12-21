@@ -136,15 +136,19 @@ class GameScene: SKScene {
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let 点击 = touches.first else { return }
+        
+        let 点击位置 = 点击.location(in: self)
+        
         switch 当前游戏状态 {
             case .主菜单:
-//            if 点击位置.y < size.height * 0.15 {
-////                去学习()
-//            } else if 点击位置.x < size.width/2 {
+            if 点击位置.y < size.height * 0.15 {
+                去学习()
+            } else if 点击位置.x < size.width/2 {
                 切换到教程状态()
-//            } else {
-////                去评价()
-//            }
+            } else {
+                去评价()
+            }
                 break
             case .教程:
                 切换到游戏状态()
@@ -625,5 +629,24 @@ extension GameScene {
     
     func 切换到结束状态() {
         当前游戏状态 = .结束🔚
+    }
+}
+
+// MARK: - 其他 https://github.com/LYM-mg/MGFlappy-Bird
+extension GameScene {
+    fileprivate func 去学习() {
+        let 学习代码网址 = "https://github.com/LYM-mg/MGFlappy-Bird"
+        guard let url = URL(string: 学习代码网址) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    fileprivate func 去评价() {
+        let appStore网址 = "http://itunes.apple.com/app/id1077251372?mt=8"
+        guard let url = URL(string: appStore网址) else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.openURL(url)
+        }
     }
 }
