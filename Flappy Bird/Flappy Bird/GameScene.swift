@@ -37,10 +37,11 @@ class GameScene: SKScene {
     var 得分标签: SKLabelNode!
     var 当前分数 = 0
     let k动画延迟 = 0.3
+    let k角色动画总帧数 = 4
     
     var 主角撞击了地面布尔类型: Bool = false
     var 主角撞击了障碍物布尔类型: Bool = false
-    var 当前游戏状态: 游戏状态 = .游戏
+    var 当前游戏状态: 游戏状态 = .主菜单
     
     // MARK: - 创建音效
     let 叮的音效 = SKAction.playSoundFileNamed("ding.wav", waitForCompletion: false)
@@ -230,18 +231,6 @@ class GameScene: SKScene {
 // MARK: - 设置的相关方法
 extension GameScene {
     fileprivate func 设置教程() {
-//        let 教程      = SKSpriteNode(imageNamed: "Tutorial")
-//        教程.position = CGPoint(x: size.width/2, y: 游戏区域的高度*0.4+游戏区域起始点)
-//        教程.name = "教程"
-//        教程.zPosition = 图层.UI.rawValue
-//        游戏世界.addChild(教程)
-//        
-//        let 准备 = SKSpriteNode(imageNamed: "Ready")
-//        准备.position = CGPoint(x: size.width/2, y: 游戏区域的高度*0.7 + 游戏区域起始点)
-//        准备.name  = "教程"
-//        准备.zPosition = 图层.UI.rawValue
-//        游戏世界.addChild(准备)
-        
         let 教程 = SKSpriteNode(imageNamed: "Tutorial")
         教程.position = CGPoint(x: size.width * 0.5 , y: 游戏区域的高度 * 0.4 + 游戏区域起始点)
         教程.name = "教程"
@@ -253,6 +242,34 @@ extension GameScene {
         准备.name = "教程"
         准备.zPosition = 图层.UI.rawValue
         游戏世界.addChild(准备)
+        
+        let 向上移动 = SKAction.moveBy(x: 0, y: 50, duration: 0.4)
+        向上移动.timingMode = .easeInEaseOut
+        let 向下移动 = 向上移动.reversed()
+        
+        主角.run(SKAction.repeatForever(SKAction.sequence([
+            向上移动,向下移动
+            ])), withKey: "起飞")
+        
+        var 角色贴图组: Array<SKTexture> = []
+        
+        for i in 0..<k角色动画总帧数 {
+            角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
+        }
+//        if #available(iOS 9.0, *) {
+//            (MDLVertexBufferLayout(stride: k角色动画总帧数-1)).stride(through: 0, by: -1)
+//        } else {
+//            
+//        }
+//        for i in Int(k角色动画总帧数-1).stride(through: 0, by: -1) {
+//            角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
+//        }
+//        for i in (k角色动画总帧数-1).stride(through: 0, by: -1) {
+//            角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
+//        }
+        
+        let 扇动翅膀的动画 = SKAction.animate(with: 角色贴图组, timePerFrame: 0.07)
+        主角.run(SKAction.repeatForever(扇动翅膀的动画))
     }
     
     
