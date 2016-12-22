@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C09C0B431DFEBEAB006E2E9B /* BitMaskType.swift in Sources */ = {isa = PBXBuildFile; fileRef = C09C0B421DFEBEAB006E2E9B /* BitMaskType.swift */; };
+		C0D88D531E0C077B002630B5 /* MGBird.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0D88D521E0C077B002630B5 /* MGBird.swift */; };
 		C0F7BFF51DFC128600948E16 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7BFF41DFC128600948E16 /* AppDelegate.swift */; };
 		C0F7BFF91DFC128600948E16 /* Actions.sks in Resources */ = {isa = PBXBuildFile; fileRef = C0F7BFF81DFC128600948E16 /* Actions.sks */; };
 		C0F7BFFB1DFC128600948E16 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0F7BFFA1DFC128600948E16 /* GameScene.swift */; };
@@ -40,7 +41,8 @@
 
 /* Begin PBXFileReference section */
 		C09C0B421DFEBEAB006E2E9B /* BitMaskType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BitMaskType.swift; sourceTree = "<group>"; };
-		C0F7BFF11DFC128600948E16 /* Flappy Bird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Flappy Bird.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C0D88D521E0C077B002630B5 /* MGBird.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MGBird.swift; sourceTree = "<group>"; };
+		C0F7BFF11DFC128600948E16 /* MG Bird.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MG Bird.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0F7BFF41DFC128600948E16 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C0F7BFF81DFC128600948E16 /* Actions.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Actions.sks; sourceTree = "<group>"; };
 		C0F7BFFA1DFC128600948E16 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
@@ -87,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				C09C0B421DFEBEAB006E2E9B /* BitMaskType.swift */,
+				C0D88D521E0C077B002630B5 /* MGBird.swift */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -102,7 +105,7 @@
 		C0F7BFF21DFC128600948E16 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C0F7BFF11DFC128600948E16 /* Flappy Bird.app */,
+				C0F7BFF11DFC128600948E16 /* MG Bird.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -193,7 +196,7 @@
 			);
 			name = "Flappy Bird";
 			productName = "Flappy Bird";
-			productReference = C0F7BFF11DFC128600948E16 /* Flappy Bird.app */;
+			productReference = C0F7BFF11DFC128600948E16 /* MG Bird.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -259,6 +262,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0F7BFFB1DFC128600948E16 /* GameScene.swift in Sources */,
+				C0D88D531E0C077B002630B5 /* MGBird.swift in Sources */,
 				C0F7C07B1DFC207000948E16 /* CGPoint+Extensions.swift in Sources */,
 				C0F7C0841DFC207000948E16 /* SKTTimingFunctions.swift in Sources */,
 				C0F7C0831DFC207000948E16 /* SKTEffects.swift in Sources */,
@@ -398,7 +402,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "i-Techsys.com.Flappy-Bird";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "MG Bird";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -411,7 +415,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "i-Techsys.com.Flappy-Bird";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "MG Bird";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

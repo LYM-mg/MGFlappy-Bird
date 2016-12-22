@@ -124,18 +124,7 @@ class GameScene: SKScene {
         run(总的动作队列, withKey: "重生")
     }
     
-    fileprivate func 主角飞一下() {
-        // 播放音效
-        run(拍打的音效)
-        速度 = CGPoint(x: 0, y: k上冲速度)
-
-        /// 帽子的动画
-        let 向上移动 = SKAction.moveBy(x: 0, y: 12, duration: 0.15)
-        向上移动.timingMode = .easeInEaseOut
-        let 向下移动 = 向上移动.reversed()
-        帽子🎩.run(SKAction.sequence([向上移动, 向下移动]))
-    }
-    
+    // MARK: - Touch Begin
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         guard let 点击 = touches.first else { return }
         
@@ -167,6 +156,19 @@ class GameScene: SKScene {
                 break
         }
     }
+    
+    fileprivate func 主角飞一下() {
+        // 播放音效
+        run(拍打的音效)
+        速度 = CGPoint(x: 0, y: k上冲速度)
+        
+        /// 帽子的动画
+        let 向上移动 = SKAction.moveBy(x: 0, y: 12, duration: 0.15)
+        向上移动.timingMode = .easeInEaseOut
+        let 向下移动 = 向上移动.reversed()
+        帽子🎩.run(SKAction.sequence([向上移动, 向下移动]))
+    }
+
     
     // MARK: - 更新
     override func update(_ 当前时间: TimeInterval) {
@@ -256,17 +258,11 @@ extension GameScene {
         for i in 0..<k角色动画总帧数 {
             角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
         }
-//        if #available(iOS 9.0, *) {
-//            (MDLVertexBufferLayout(stride: k角色动画总帧数-1)).stride(through: 0, by: -1)
-//        } else {
-//            
-//        }
-//        for i in Int(k角色动画总帧数-1).stride(through: 0, by: -1) {
-//            角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
-//        }
-//        for i in (k角色动画总帧数-1).stride(through: 0, by: -1) {
-//            角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
-//        }
+
+        
+        for i in stride(from: 0, to: (k角色动画总帧数-1), by: -1) {
+            角色贴图组.append(SKTexture(imageNamed: "Bird\(i)"))
+        }
         
         let 扇动翅膀的动画 = SKAction.animate(with: 角色贴图组, timePerFrame: 0.07)
         主角.run(SKAction.repeatForever(扇动翅膀的动画))
